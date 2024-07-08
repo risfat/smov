@@ -15,6 +15,12 @@ import { WatchingPart } from "@/pages/parts/home/WatchingPart";
 import { SearchListPart } from "@/pages/parts/search/SearchListPart";
 import { SearchLoadingPart } from "@/pages/parts/search/SearchLoadingPart";
 
+import { LatestSeriesPart } from "./parts/home/LatestSeriesPart";
+import { PopularMoviesPart } from "./parts/home/PopularMoviesPart";
+import { PopularSeriesPart } from "./parts/home/PopularSeriesPart";
+import { TopRatedMoviesPart } from "./parts/home/TopRatedMoviesPart";
+import { TopRatedSeriesPart } from "./parts/home/TopRatedSeriesPart";
+
 function useSearch(search: string) {
   const [searching, setSearching] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -77,17 +83,32 @@ export function HomePage() {
               <BookmarksPart onItemsChange={setShowBookmarks} />
               <WatchingPart onItemsChange={setShowWatching} />
             </div>
-            {!(showBookmarks || showWatching) ? (
-              <div className="flex flex-col items-center justify-center">
-                <p className="text-[18.5px] pb-3">{emptyText}</p>
-                <Button
-                  className="px-py p-[0.35em] mt-3 rounded-xl text-type-dimmed box-content text-[18px] bg-largeCard-background text-buttons-secondaryText justify-center items-center"
-                  onClick={() => handleClick("/discover")}
-                >
-                  {t("home.search.discover")}
-                </Button>
-              </div>
-            ) : null}
+            <br />
+            <PopularMoviesPart />
+            <br />
+            <br />
+            <LatestSeriesPart />
+            <br />
+            <br />
+            <TopRatedMoviesPart />
+            <br />
+            <br />
+            <PopularSeriesPart />
+            <br />
+            <br />
+            <TopRatedSeriesPart />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div className="flex flex-col items-center justify-center">
+              <Button
+                className="px-py p-[0.35em] mt-3 rounded-xl text-type-dimmed box-content text-[18px] bg-largeCard-background text-buttons-secondaryText justify-center items-center"
+                onClick={() => handleClick("/discover")}
+              >
+                Discover More
+              </Button>
+            </div>
           </>
         )}
       </WideContainer>
